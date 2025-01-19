@@ -1,0 +1,44 @@
+# temp files from editors
+*~
+*.bak
+.DS_Store
+.buildpath
+.project
+.settings
+*.tmproj
+build
+.idea
+nbproject/
+
+# text editor setting
+*.code-workspace
+
+# hidden files created by Windows
+Thumbs.db
+desktop.ini
+
+# setting file
+.env
+credentials.json
+service_account.json
+
+
+# gem files
+.bundle
+vendor/bundle/
+
+# nodejs
+node_modules
+
+# webpack
+dist
+
+# puppeteer
+screenshot/
+
+# data
+.data
+
+#terraform
+.terraform
+.terraform.lock.hcl
