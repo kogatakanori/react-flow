@@ -33,9 +33,14 @@ export function Flow() {
   const loadFlow = () => {
     const flowData = localStorage.getItem('reactflow')
     if (flowData) {
-      const { nodes, edges } = JSON.parse(flowData)
-      setNodes(nodes)
-      setEdges(edges)
+      try {
+        const { nodes, edges } = JSON.parse(flowData)
+        setNodes(nodes)
+        setEdges(edges)
+      } catch (error) {
+        console.error('Failed to parse flow data:', error)
+        // Handle the error, e.g., reset to default values or notify the user
+      }
     }
   }
 
