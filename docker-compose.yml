@@ -25,5 +25,13 @@ services:
       BIND_HOST: 0.0.0.0
       GOOGLE_APPLICATION_CREDENTIALS: './application_default_credentials.json'
 
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+
 volumes:
   reactflow_node_modules:
+  mongo_data:

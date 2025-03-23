@@ -38,3 +38,9 @@ lint:
 
 test:
 	$(call run, npm run test)
+
+start-mongodb:
+	docker compose up -d mongodb
+
+stop-mongodb:
+	docker compose down mongodb
