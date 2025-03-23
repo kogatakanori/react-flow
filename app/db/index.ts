@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-const uri = process.env.DB_HOST;
+const uri = 'mongodb://localhost:27017';
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -23,5 +23,11 @@ if (process.env.NODE_ENV === 'development') {
   client = new MongoClient(uri, options);
   clientPromise = client.connect();
 }
+
+clientPromise.then(() => {
+  console.log('Connected to MongoDB successfully');
+}).catch((err) => {
+  console.error('Failed to connect to MongoDB', err);
+});
 
 export default clientPromise;
