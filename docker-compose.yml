@@ -1,24 +1,24 @@
 services:
-  app:
+  client:
     build:
       context: .
-      dockerfile: ./docker/app.Dockerfile
+      dockerfile: ./docker/client.Dockerfile
       target: ${DOCKER_TARGET:-local}
     ports:
       - 3000:3000
     tty: true
     command: npm run dev
-    working_dir: /app
+    working_dir: /client
     volumes:
       - type: bind
-        source: ./app
-        target: /app
+        source: ./client
+        target: /client
       - type: bind
         source: ~/.cconfig/gcloud/application_default_credentials.json
         target: /application_default_credentials.json
       - type: volume
-        source: reactflow_node_modules
-        target: /app/node_modules
+        source: reactflow_client_node_modules
+        target: /client/node_modules
     environment:
       NODE_ENV: local
       PORT: 3000
@@ -26,4 +26,4 @@ services:
       GOOGLE_APPLICATION_CREDENTIALS: './application_default_credentials.json'
 
 volumes:
-  reactflow_node_modules:
+  reactflow_client_node_modules:
