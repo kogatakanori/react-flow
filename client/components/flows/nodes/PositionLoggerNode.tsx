@@ -1,6 +1,8 @@
 import type { Node, NodeProps } from '@xyflow/react'
 import { Handle, Position } from '@xyflow/react'
 
+export const POSITION_LOGGER_NAME = 'positionLogger'
+
 export type PositionLoggerNodeData = {
   label?: string
 }
@@ -19,7 +21,8 @@ export function PositionLoggerNode({ positionAbsoluteX, positionAbsoluteY, data 
         {x} {y}
       </div>
 
-      <Handle type="source" position={Position.Bottom} />
+      <Handle type="source" position={Position.Right} />
+      <Handle type="target" position={Position.Left} />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-
+import { ReactFlowProvider } from '@xyflow/react'
 import '../styles/globals.css'
 
 export default function RootLayout({
@@ -11,7 +11,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased`}>
+        <ReactFlowProvider>{children}</ReactFlowProvider>
+      </body>
     </html>
   )
 }
