@@ -15,7 +15,7 @@ type ButtonEdgeData = {}
 
 export type ButtonEdge = Edge<ButtonEdgeData>
 
-export default function ButtonEdge({
+export function ButtonEdge({
   id,
   sourceX,
   sourceY,

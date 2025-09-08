@@ -8,11 +8,11 @@ FROM base AS local
 
 ENV NODE_ENV=local
 
-WORKDIR /app
+WORKDIR /client
 
-COPY ./app/package*.json /app/
+COPY ./client/package*.json /client/
 RUN npm ci
-COPY ./app /app
+COPY ./client /client
 
 # build
 # --------------------------------------------------
@@ -25,7 +25,7 @@ RUN npm run build
 FROM build AS production
 ENV NODE_ENV=production
 
-COPY --from=build /app/dist /app/dist
-COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /client/dist /client/dist
+COPY --from=build /client/node_modules /client/node_modules
 
 CMD ["npm", "run", "start"]

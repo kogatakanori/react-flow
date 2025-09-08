@@ -1,21 +1,20 @@
 define run
-	docker compose run --rm app sh -c "$1"
+	docker compose run --rm client sh -c "$1"
 endef
 
 setup:
-	sh scripts/setup.sh
+	GOOGLE_PROJECT_ID="tools-it" sh scripts/setup.sh
 
-init:
-	DOCKER_TARGET=base docker compose build
-	make install
-	make down
-
-audit:
-	$(call run, npm audit fix)
+build:
+	DOCKER_TARGET=local docker compose build
 	make down
 
 install:
 	$(call run, npm install)
+	make down
+
+audit:
+	$(call run, npm audit fix --force)
 	make down
 
 up:
@@ -24,14 +23,11 @@ up:
 down:
 	docker compose down
 
-build: # prodiction build
-	$(call run, npm run build)
-
 sh:
-	docker compose exec app bash
+	docker compose exec client bash
 
 logs:
-	docker compose logs -f app
+	docker compose logs -f client
 
 lint:
 	$(call run, npm run lint)

@@ -19,3 +19,8 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.react-flow {
+  --xy-node-color-default: #333;
+  --xy-node-color: #333;
+}
