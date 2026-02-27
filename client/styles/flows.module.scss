@@ -25,11 +25,27 @@
 
 .button {
   background-color: #fff;
-  border: 1px solid #fff;
+  border: 1px solid #d0d7de;
   color: #333;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   cursor: pointer;
   margin-right: 0.5rem;
   font-size: 14px;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.buttonPrimary {
+  background-color: #0969da;
+  border-color: #0969da;
+  color: #fff;
+  font-weight: 600;
+
+  &:hover:not(:disabled) {
+    background-color: #0860ca;
+  }
 }
