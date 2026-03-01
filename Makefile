@@ -3,10 +3,10 @@ define run
 endef
 
 setup:
-	GOOGLE_PROJECT_ID="tools-it" sh scripts/setup.sh
+	GOOGLE_PROJECT_ID="{your_project_id}" sh scripts/setup.sh
 
 build:
-	DOCKER_TARGET=local docker compose build
+	DOCKER_TARGET=local docker compose build --no-cache
 	make down
 
 install:

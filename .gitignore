@@ -19,6 +19,7 @@ desktop.ini
 
 # setting file
 .env
+env.local
 credentials.json
 service_account.json
 

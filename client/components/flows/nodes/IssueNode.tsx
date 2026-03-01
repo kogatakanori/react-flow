@@ -11,16 +11,18 @@ export type IssueNodeData = {
   state: 'open' | 'closed'
   labels: string[]
   url: string
-  author: string
+  assignees: string[]
   createdAt: string
 }
 
 export type IssueNode = Node<IssueNodeData>
 
-export function IssueNode({ data }: NodeProps<IssueNode>) {
+export function IssueNode({ data, sourcePosition, targetPosition }: NodeProps<IssueNode>) {
+  const resolvedTarget = targetPosition ?? Position.Top
+  const resolvedSource = sourcePosition ?? Position.Bottom
   return (
     <div className={`${styles.node} ${data.state === 'open' ? styles.open : styles.closed}`}>
-      <Handle type="target" position={Position.Top} />
+      <Handle type="target" position={resolvedTarget} />
 
       <div className={styles.header}>
         <span className={styles.number}>#{data.number}</span>
@@ -46,11 +48,11 @@ export function IssueNode({ data }: NodeProps<IssueNode>) {
       )}
 
       <div className={styles.meta}>
-        <span>{data.author}</span>
+        <span>{data.assignees.length > 0 ? data.assignees.join(', ') : '未アサイン'}</span>
         <span>{new Date(data.createdAt).toLocaleDateString('ja-JP')}</span>
       </div>
 
-      <Handle type="source" position={Position.Bottom} />
+      <Handle type="source" position={resolvedSource} />
     </div>
   )
 }
