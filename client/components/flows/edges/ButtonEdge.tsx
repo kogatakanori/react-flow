@@ -11,7 +11,7 @@ const buttonStyle = {
   lineHeight: 1,
 }
 
-type ButtonEdgeData = {}
+type ButtonEdgeData = Record<string, never>
 
 export type ButtonEdge = Edge<ButtonEdgeData>
 

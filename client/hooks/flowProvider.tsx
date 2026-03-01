@@ -2,6 +2,9 @@
 
 import React, { createContext, useReducer, useContext } from 'react'
 import { Node, Edge } from '@xyflow/react'
+import { createLogger } from '@/lib/logger'
+
+const logger = createLogger('hook:flowProvider')
 
 type FlowStateType = {
   nodes: Node[]
@@ -21,18 +24,21 @@ type FlowActionType =
 // reducer
 // --------------------------------------------------
 const flowReducer = (state: FlowStateType, action: FlowActionType): FlowStateType => {
+  logger.debug(
+    { actionType: action.type, nodeCount: action.payload.nodes.length, edgeCount: action.payload.edges.length },
+    'flowReducer action dispatched'
+  )
   switch (action.type) {
-    case 'LOADED':
-      return {
-        nodes: action.payload.nodes,
-        edges: action.payload.edges,
-      }
-    case 'SAVE':
-      return {
-        nodes: action.payload.nodes,
-        edges: action.payload.edges,
-      }
-
+    case 'LOADED': {
+      const next = { nodes: action.payload.nodes, edges: action.payload.edges }
+      logger.info({ nodeCount: next.nodes.length, edgeCount: next.edges.length }, 'Flow LOADED')
+      return next
+    }
+    case 'SAVE': {
+      const next = { nodes: action.payload.nodes, edges: action.payload.edges }
+      logger.info({ nodeCount: next.nodes.length, edgeCount: next.edges.length }, 'Flow SAVE')
+      return next
+    }
     default:
       return { ...state }
   }

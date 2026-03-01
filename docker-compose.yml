@@ -14,7 +14,7 @@ services:
         source: ./client
         target: /client
       - type: bind
-        source: ~/.cconfig/gcloud/application_default_credentials.json
+        source: ~/.config/gcloud/application_default_credentials.json
         target: /application_default_credentials.json
       - type: volume
         source: reactflow_client_node_modules
